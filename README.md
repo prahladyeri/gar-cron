@@ -11,7 +11,7 @@ github activity reminder cron - a script to send you reminders about your github
 
 # Configuration
 
-When you run gar-cron for the first time, it will ask you to set values in `config.json` along with its path. The values you need to set should be as follows (You need an smtp mail account to shoot emails, popular ones like GMail/Hotmail don't support this without oAuth, so register one at [gmx.com](https://gmx.com) or something):
+When you run gar-cron for the first time, it will prompt you to set values in `config.json` along with its path. The values you need to set should be as follows (You need an smtp mail account to shoot emails, popular ones like GMail/Hotmail don't support this without oAuth, so register one at [gmx.com](https://gmx.com) or something):
 
 	{
 		"github_username": "<your github username>",
