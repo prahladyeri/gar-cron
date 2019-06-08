@@ -1,0 +1,9 @@
+{
+	"github_username": "",
+	"alert_email": "",
+	"smtp_server":"",
+	"smtp_email": "",
+	"smtp_username": "",
+	"smtp_password": "",
+	"smtp_port": "0"
+}
