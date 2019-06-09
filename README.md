@@ -1,5 +1,5 @@
 # gar-cron
-github activity reminder cron - a script to send you reminders about your github commit activity. By default, it shoots a mail when there is no commit activity for 3 or more days.
+github activity reminder cron - a script to send you reminders about your github commit activity. By default, it shoots a mail when there is no commit activity for 3 or more days. [Read this DEV.to article to understand more about this tool](https://dev.to/prahladyeri/gar-cron-a-python-script-to-remind-you-about-your-github-activity-22ad).
 
 # Installation
 
