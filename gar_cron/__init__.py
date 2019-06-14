@@ -1,4 +1,4 @@
-__version__ = "0.2"
+__version__ = "1.0.2"
 __title__ = "github activity reminder cron"
 __author__ = "Prahlad Yeri<prahladyeri@yahoo.com>"
 __license__ = "MIT"
