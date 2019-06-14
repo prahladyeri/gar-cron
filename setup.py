@@ -25,4 +25,9 @@ s = setup(
 	install_requires=['requests'],
 	author='Prahlad Yeri',
 	author_email='prahladyeri@yahoo.com',
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
 	)
