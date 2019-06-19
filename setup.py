@@ -15,9 +15,9 @@ class PostInstallCommand(install):
 		install.run(self)
 		fpath = os.path.join(self.install_lib, pkg_name)
 		fpath = os.path.join(fpath, "cfg.json")
-		tpath = os.path.join(os.path.expanduser("~"), ".config/%s/cfg.json" % pkg_name)
-		if not os.path.isdir(tpath):
-			os.makedirs(tpath)
+		cfg_dir = os.path.join(os.path.expanduser("~"), ".config/%s" % pkg_name)
+		if not os.path.isdir(cfg_dir): os.makedirs(cfg_dir)
+		tpath = os.path.join(cfg_dir, "cfg.json")
 		shutil.move(fpath, tpath)
 
 def read(fname):
