@@ -13,9 +13,9 @@ class PostInstallCommand(install):
 	"""Post-installation for installation mode."""
 	def run(self):
 		install.run(self)
-		fpath = os.path.join(self.install_lib, your_package)
+		fpath = os.path.join(self.install_lib, pkg_name)
 		fpath = os.path.join(fpath, "cfg.json")
-		tpath = os.path.join(os.path.expanduser("~"), ".config/<your_package>/cfg.json")
+		tpath = os.path.join(os.path.expanduser("~"), ".config/%s/cfg.json" % pkg_name)
 		if not os.path.isdir(tpath):
 			os.makedirs(tpath)
 		shutil.move(fpath, tpath)
