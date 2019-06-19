@@ -67,6 +67,10 @@ def check_activity():
 	url = "https://api.github.com/users/%s/events" % config['github_username']
 	resp = requests.get(url)
 	acts = json.loads(resp.text)
+	if len(acts) == 0:
+		print("Zero events found, is this the correct github repo I'm looking at?")
+		print("Run the program again with --config parameter to set the correct values")
+		return
 	for i in range(len(acts)):
 		act = acts[i]
 		if act['type'] == 'PushEvent': #latest commit
@@ -109,10 +113,11 @@ For a copy, see <https://opensource.org/licenses/MIT>.
 			print("Cound't read config values, please start the program again using --config parameter")
 		return
 
-	config = cfgsaver.get_from_cmd(pkg_name, config_keys)
 	if config == None:
-		print("Cound't read config values, please start the program again using --config parameter")
-		return
+		config = cfgsaver.get_from_cmd(pkg_name, config_keys)
+		if config == None:
+			print("Cound't read config values, please start the program again using --config parameter")
+			return
 	# if config["github_username"] == "":
 		# print("Configuration file is empty. Please put the appropriate values in this config file:\n")
 		# print(conf_file)
