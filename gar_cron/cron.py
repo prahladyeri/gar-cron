@@ -1,4 +1,6 @@
 import gar_cron
+from gar_cron import __version__, __title__, __description__
+from cfgsaver import cfgsaver
 import json, os, argparse, requests
 from datetime import datetime
 import smtplib
@@ -6,17 +8,11 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 
-apppath = os.path.dirname(os.path.realpath(__file__))
-conf_file = os.path.join(apppath, 'config.json')
-fp = open(conf_file, 'r')
-ss = fp.read()
-fp.close()
-try:
-	config = json.loads(ss)
-except:
-	print("Error parsing config.json. Please ensure that the file is syntactically correct:\n")
-	print(conf_file)
-	exit()
+#apppath = os.path.dirname(os.path.realpath(__file__))
+#conf_file = os.path.join(apppath, 'config.json')
+pkg_name = "gar_cron"
+config_keys = ['github_username', 'alert_email']
+config = cfgsaver.get(pkg_name)
 
 def send_mail(to, subject, text, file_name = ""):
 	try:
@@ -91,20 +87,38 @@ def check_activity():
 	
 
 def main():
+	global config
+	banner = """%s version %s
+%s
+
+Copyright (c) 2019 Prahlad Yeri.
+
+This work is licensed under the terms of the MIT license.  
+For a copy, see <https://opensource.org/licenses/MIT>.
+""" % (__title__, __version__, __description__)
 	parser = argparse.ArgumentParser()
 	parser.add_argument('-v', '--version',  default=False, action='store_true', help='display the version number')
+	parser.add_argument('-c', '--config',  default=False, action='store_true', help='setup the app configuration')
 	args = parser.parse_args()
 	if args.version:
-		print("gar-cron v%s" % (gar_cron.__version__) )
-		print(gar_cron.__title__ )
+		print(banner)
 		return
-	elif config["github_username"] == "":
-		print("Configuration file is empty. Please put the appropriate values in this config file:\n")
-		print(conf_file)
+	if args.config:
+		config = cfgsaver.get_from_cmd(pkg_name, config_keys)
+		if config == None:
+			print("Cound't read config values, please start the program again using --config parameter")
 		return
-		#send_mail("prahladyeri@yahoo.com", "test message from cron", "this is some text.\n\nHere is some more.")
-	else:
-		check_activity()
+
+	config = cfgsaver.get_from_cmd(pkg_name, config_keys)
+	if config == None:
+		print("Cound't read config values, please start the program again using --config parameter")
+		return
+	# if config["github_username"] == "":
+		# print("Configuration file is empty. Please put the appropriate values in this config file:\n")
+		# print(conf_file)
+		# return
+	# else:
+	check_activity()
 	
 
 
