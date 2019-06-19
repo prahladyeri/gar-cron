@@ -113,7 +113,7 @@ For a copy, see <https://opensource.org/licenses/MIT>.
 			print("Cound't read config values, please start the program again using --config parameter")
 		return
 
-	if config == None:
+	if config == None or config['github_username'] == '':
 		config = cfgsaver.get_from_cmd(pkg_name, config_keys)
 		if config == None:
 			print("Cound't read config values, please start the program again using --config parameter")
