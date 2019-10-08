@@ -11,7 +11,8 @@ from email.mime.application import MIMEApplication
 #apppath = os.path.dirname(os.path.realpath(__file__))
 #conf_file = os.path.join(apppath, 'config.json')
 pkg_name = "gar_cron"
-config_keys = ['github_username', 'alert_email']
+config_keys = ['github_username', 'alert_email', 
+	'smtp_server', 'smtp_email', 'smtp_username', 'smtp_password']
 config = cfgsaver.get(pkg_name)
 
 def send_mail(to, subject, text, file_name = ""):
